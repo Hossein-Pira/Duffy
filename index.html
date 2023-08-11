@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://unpkg.com/tailwindcss@ ↗](https://unpkg.com/tailwindcss@)^2/dist/tailwind.min.css"
+        rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>هم خانومی هم دافی</title>
+</head>
+
+<body>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #fff;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .man {
+            width: 20vw;
+            height: 40vw;
+            position: relative;
+            animation: dance 2s infinite;
+        }
+
+        .head {
+            width: 12vw;
+            height: 12vw;
+            background-color: #000;
+            border-radius: 50%;
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .face {
+            width: 2vw;
+            height: 2vw;
+            background-color: #fff;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .eye-left {
+            top: 40%;
+            left: 25%;
+        }
+
+        .eye-right {
+            top: 40%;
+            right: 25%;
+        }
+
+        .mouth {
+            top: 60%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .hand-left,
+        .hand-right,
+        .foot-left,
+        .foot-right {
+            width: 6vw;
+            height: 6vw;
+            position: absolute;
+            background-color: #000;
+            border-radius: 50%;
+            animation: handAndFoot 2s infinite;
+        }
+
+        .hand-left {
+            left: 1.5vw;
+            top: 40%;
+        }
+
+        .hand-right {
+            right: 1.5vw;
+            top: 40%;
+        }
+
+        .foot-left {
+            left: 2.5vw;
+            bottom: 0;
+        }
+
+        .foot-right {
+            right: 2.5vw;
+            bottom: 0;
+        }
+
+        @keyframes dance {
+            0% {
+                transform: translateX(0) rotate(0);
+            }
+
+            25% {
+                transform: translateX(-2.5vw) rotate(-20deg);
+            }
+
+            50% {
+                transform: translateX(0) rotate(0);
+            }
+
+            75% {
+                transform: translateX(2.5vw) rotate(20deg);
+            }
+
+            100% {
+                transform: translateX(0) rotate(0);
+            }
+        }
+
+        @keyframes handAndFoot {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(0.8);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .dialogue-box {
+            position: absolute;
+            top: 35%;
+            left: 60%;
+            background-color: #fff;
+            padding: 10px;
+            border: 1px solid #000;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            font-family: Arial, sans-serif;
+        }
+
+        .message {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        audio {
+            display: none;
+        }
+
+        .snowflake {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border: 1px solid black;
+            background-color: white;
+            border-radius: 50%;
+            animation: snowfall linear infinite;
+        }
+
+        @keyframes snowfall {
+            0% {
+                transform: translateY(-100vh);
+            }
+
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+    </style>
+    </head>
+
+    <body>
+        <div class="container mx-auto">
+            <div class="flex justify-center items-center">
+                <img id="image1" src="img/image1.png" style="display: none;" width="250">
+                <img id="image2" src="img/image2.png" style="display: none;" width="300">
+                <img id="image3" src="img/image3.png" style="display: none;" width="250">
+                <img id="image4" src="img/image4.png" style="display: none;" width="250">
+                <img id="image5" src="img/image5.png" style="display: none;" width="250">
+                <img id="image6" src="img/image6.png" style="display: none;" width="350">
+            </div>
+            <div class="man sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5">
+                <div id="main">
+                    <div class="head">
+                        <div class="face eye-left"></div>
+                        <div class="face eye-right"></div>
+                        <div class="face mouth"></div>
+                    </div>
+                    <div class="hand-left"></div>
+                    <div class="hand-right"></div>
+                    <div class="foot-left"></div>
+                    <div class="foot-right"></div>
+                </div>
+            </div>
+            <div class="dialogue-box" id="message-box">
+                <p id="message" class="message">هم خانومی هم دافی! آماده ای؟ الان پخش میشه</p>
+            </div>
+            <div id="love" class="dialogue-box" style="display: none;">
+                <p class="message">عشق منی داداش</p>
+            </div>
+            <audio id="Surprise" src="Surprise.mp3"></audio>
+        </div>
+
+        <script>
+            var texts = ["های سورپرایز", "دافی سورپرایز", "داشی سورپرایز", "تولد بده بوس وای", "های سورپرایز", "دافی سورپرایز", "داشی سورپرایز", "تولد بده بوس وای", "جون دافی", "شدی 18 آره؟", "های سورپرایز", "دافی سورپرایز", "داشی سورپرایز", "تولد بده بوس وای", "هم خانومی هم دافی", "بدون آرایش هم باز دافی!", "بلند شو برقص"];
+            var currentIndex = 0;
+
+            function changeText() {
+                var element = document.getElementById("message");
+                element.textContent = texts[currentIndex];
+                currentIndex = (currentIndex + 1) % texts.length;
+            }
+            setInterval(changeText, 2000);
+
+            function playMusic() {
+                var audio = document.getElementById("Surprise");
+                audio.play();
+            }
+            setTimeout(playMusic, 3000);
+
+            function changeImage() {
+                var image1 = document.getElementById("image1");
+                var image2 = document.getElementById("image2");
+                var image3 = document.getElementById("image3");
+                var image4 = document.getElementById("image4");
+                var image5 = document.getElementById("image5");
+                var image6 = document.getElementById("image6");
+                var main = document.getElementById("main");
+                setTimeout(function () {
+                    main.style.display = "none";
+                    image1.style.display = "block";
+                }, 73500);
+                setTimeout(function () {
+                    image1.style.display = "none";
+                    image2.style.display = "block";
+                }, 76000);
+                setTimeout(function () {
+                    image2.style.display = "none";
+                    image3.style.display = "block";
+                }, 78000);
+                setTimeout(function () {
+                    image3.style.display = "none";
+                    image4.style.display = "block";
+                }, 80000);
+                setTimeout(function () {
+                    image4.style.display = "none";
+                    main.style.display = "block";
+                }, 82000);
+                setTimeout(function () {
+                    main.style.display = "none";
+                    image5.style.display = "block";
+                }, 88000);
+                setTimeout(function () {
+                    image5.style.display = "none";
+                    main.style.display = "block";
+                }, 91000);
+                setTimeout(function () {
+                    main.style.display = "none";
+                    image6.style.display = "block";
+                    document.getElementById("message-box").style.display = "none";
+                    document.getElementById("message").style.display = "none";
+                    document.getElementById("love").style.display = "block";
+                }, 188000);
+            }
+
+            changeImage();
+
+            function createSnowflakes() {
+                const numSnowflakes = 50;
+
+                for (let i = 0; i < numSnowflakes; i++) {
+                    const snowflake = document.createElement('div');
+                    snowflake.className = 'snowflake';
+                    snowflake.style.left = `${Math.random() * 100}%`;
+                    snowflake.style.animationDuration = `${Math.random() * 5 + 5}s`;
+                    document.body.appendChild(snowflake);
+                }
+            }
+
+            setTimeout(createSnowflakes, 91000);
+        </script>
+    </body>
+
+</html>
